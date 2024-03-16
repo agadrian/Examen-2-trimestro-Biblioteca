@@ -19,8 +19,12 @@ class GestorBiblioteca(
     /**
      * Elimina el elemento pasado por parametro del catalgo
      */
-    fun eliminarElemento(id: String){
-        catalogo.eliminarElementoPorId(id)
+    fun eliminarElemento(elemento: ElementoBiblioteca){
+        catalogo.eliminarElemento(elemento)
+    }
+
+    fun obtenerElementos(): List<ElementoBiblioteca> {
+        return catalogo.obtenerElementos()
     }
 
     /**
@@ -43,6 +47,7 @@ class GestorBiblioteca(
         GestorConsola.imprimirMensaje("Historial de prestamos: ")
         gestorPrestamo.consultarHistorial()
     }
+
 
 
 }
