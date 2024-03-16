@@ -5,12 +5,13 @@ package org.pebiblioteca
  */
 data class Libro(
     override val id: String,
-    private val titulo: String,
+    override val titulo: String,
     private val autor: String,
+    override val tipo: String = "Revista",
     private val anioPubli: Int,
     private val tematica: String,
-    private var estado: EstadoElemento = EstadoElemento.DISPONIBLE
-): Prestable, Elemento{
+    override var estado: EstadoElemento = EstadoElemento.DISPONIBLE
+): ElementoBiblioteca(){
     init {
         require(titulo.isNotBlank()) {"El titulo no puede estar vacio"}
         require(autor.isNotBlank()){"El autor no puede estar vacio"}
@@ -18,13 +19,6 @@ data class Libro(
         require(tematica.isNotBlank()){"El titulo no puede estar vacio"}
     }
 
-    fun getID(): String{
-        return id
-    }
-
-    fun getTitulo(): String {
-        return titulo
-    }
 
     fun getAutor(): String{
         return autor
@@ -38,21 +32,13 @@ data class Libro(
         return tematica
     }
 
-    fun getEstado(): EstadoElemento{
-        return estado
-    }
-
-    fun modificarEstado(){
-        estado = if (estado == EstadoElemento.DISPONIBLE) EstadoElemento.PRESTADO else EstadoElemento.DISPONIBLE
-
-    }
 
     override fun prestar() {
-        TODO("Not yet implemented")
+        estado = EstadoElemento.PRESTADO
     }
 
     override fun devolver() {
-        TODO("Not yet implemented")
+        estado = EstadoElemento.DISPONIBLE
     }
 
 

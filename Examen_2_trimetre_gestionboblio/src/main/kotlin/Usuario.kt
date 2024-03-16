@@ -6,35 +6,35 @@ package org.pebiblioteca
 class Usuario(
     val id: Int,
     val nombre: String,
-    val librosPrestados: MutableList<Libro> = mutableListOf()
+    val elementosPrestados: MutableList<ElementoBiblioteca> = mutableListOf()
 ){
 
 
     /**
      * Agrega un libro a la lista
      */
-    fun agregarLibro(libro: Libro){
-        if (libro !in librosPrestados){
-            librosPrestados.add(libro)
+    fun agregarElemento(elemento: ElementoBiblioteca){
+        if (elemento !in elementosPrestados){
+            elementosPrestados.add(elemento)
             GestorConsola.imprimirMensaje("Libro añadido correctamente")
         }else{
-            GestorConsola.imprimirMensaje("Error - El libro ${libro.getTitulo()} ya esta en tus libros prestados")
+            GestorConsola.imprimirMensaje("Error - El libro ${elemento.titulo} ya esta en tus libros prestados")
         }
     }
 
     fun eliminarLibro(libro: Libro){
-        if (libro in librosPrestados) {
-            librosPrestados.remove(libro)
+        if (libro in elementosPrestados) {
+            elementosPrestados.remove(libro)
             GestorConsola.imprimirMensaje("Libro eliminado correctamente")
         }else{
-            GestorConsola.imprimirMensaje("Error - El libro ${libro.getTitulo()} no esta en los prestados")
+            GestorConsola.imprimirMensaje("Error - El libro ${libro.titulo} no esta en los prestados")
         }
     }
 
-    fun consultarLibrosPrestados() {
-        if (librosPrestados.isNotEmpty()) {
+    fun consultarelementosPrestados() {
+        if (elementosPrestados.isNotEmpty()) {
             GestorConsola.imprimirMensaje("Libros prestados a $nombre:")
-            librosPrestados.forEach { println(it.getTitulo()) }
+            elementosPrestados.forEach { println(it.titulo) }
         } else {
             GestorConsola.imprimirMensaje("No hay libros prestados a $nombre.")
         }

@@ -1,24 +1,24 @@
 package org.pebiblioteca
 
-interface Elemento{
-    val id: String
-}
 
 
 fun main() {
     // Instanciar una GestorBiblioteca
-    val catalogo = Catalogo<Elemento>()
+    val catalogo = Catalogo<ElementoBiblioteca>()
     val registroPrestamos = RegistroPrestamos()
     val gestionBiblioteca = GestorBiblioteca(catalogo, registroPrestamos)
 
     // Agregar al menos tres libros al catálogo.
-    val libro = Libro(UtilidadesBiblioteca.CreadoUUID.crearIDUnica(), "Don Tomas", "Tomatin", 2023, "El dueño y señor")
-    val libro2 = Libro(UtilidadesBiblioteca.CreadoUUID.crearIDUnica(), "Recetas", "Arguiñano", 2020, "Comida")
-    val libro3 = Libro(UtilidadesBiblioteca.CreadoUUID.crearIDUnica(), "Peras", "Peritas", 1970, "Peras grandes")
+    val libro = Libro(UtilidadesBiblioteca.CreadoUUID.crearIDUnica(), "Don Tomas", "Tomatin", "Libro", 2023, "El dueño y señor")
+    val libro2 = Libro(UtilidadesBiblioteca.CreadoUUID.crearIDUnica(), "Recetas", "Arguiñano","Libro",  2020, "Comida")
+    val libro3 = Libro(UtilidadesBiblioteca.CreadoUUID.crearIDUnica(), "Peras", "Peritas", "Libro",1970, "Peras grandes")
+    val revista1 = Revista(UtilidadesBiblioteca.CreadoUUID.crearIDUnica(), "National Geographic","Revista", 202)
+
 
     gestionBiblioteca.aniadirElementos(libro)
     gestionBiblioteca.aniadirElementos(libro2)
     gestionBiblioteca.aniadirElementos(libro3)
+    gestionBiblioteca.aniadirElementos(revista1)
 
 
     // Ejercicio 3
@@ -33,6 +33,8 @@ fun main() {
 
     gestionBiblioteca.registrarDevolucion(libro)
     gestionBiblioteca.registrarPrestamo(libro, usuario2)
+
+    gestionBiblioteca.registrarPrestamo(revista1, usuario3)
 
     // Historial de prestamos geeneral
     gestionBiblioteca.consultarHistorialPrestamos()

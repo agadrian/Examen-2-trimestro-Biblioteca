@@ -3,7 +3,7 @@ package org.pebiblioteca
 /**
  * Alberga todos los elementos disponibles en la biblioteca. Facilita la organización y el acceso rápido a estos elementos.
  */
-class Catalogo<T: Elemento> {
+class Catalogo<T: ElementoBiblioteca> {
 
     private val elementos = mutableListOf<T>()
 
@@ -27,6 +27,6 @@ class Catalogo<T: Elemento> {
      * Muestra la lista de elementos
      */
     fun mostrarElementos(){
-        elementos.forEach { println(it) }
+        elementos.forEach { GestorConsola.imprimirMensaje(it.toString()) }
     }
 }
