@@ -5,28 +5,24 @@ package org.pebiblioteca
  */
 class Catalogo<T: ElementoBiblioteca> {
 
-    private val elementos = mutableListOf<T>()
+    private val gestorElementos = GestorElementos<ElementoBiblioteca>()
 
-    /**
-     * Añade el elemento pasado por parametro a la lista de elementos
-     */
-    fun anadirElemento(elemento: T){
-        elementos.add(elemento)
+
+    fun <T : ElementoBiblioteca> agregarElemento(elemento: T) {
+        gestorElementos.anadirElemento(elemento)
     }
 
-    /**
-     * Elimina de la lista de elementos el pasado por parametro
-     */
-    fun eliminarElemento(elemento: T){
-        // revisar
-        val elementoEliminar = elementos.find { it.id == elemento.id }
-        elementos.remove(elementoEliminar)
+
+    fun eliminarElementoPorId(id: String) {
+        gestorElementos.eliminarElemento(id)
     }
 
-    /**
-     * Muestra la lista de elementos
-     */
-    fun mostrarElementos(){
-        elementos.forEach { GestorConsola.imprimirMensaje(it.toString()) }
+    fun obtenerElementos(): List<ElementoBiblioteca> {
+        return gestorElementos.obtenerElementos()
+    }
+
+
+    fun <R> filtrarPorCriterio(criterio: (elemento: ElementoBiblioteca) -> Boolean): List<R> {
+        return gestorElementos.filtrarPorCriterio<T>(criterio) as List<R>
     }
 }

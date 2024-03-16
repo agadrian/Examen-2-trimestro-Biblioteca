@@ -13,14 +13,14 @@ class GestorBiblioteca(
      * Agrega el elemento pasado por parametro a el catalgo
      */
     fun aniadirElementos(elemento: ElementoBiblioteca){
-        catalogo.anadirElemento(elemento)
+        catalogo.agregarElemento(elemento)
     }
 
     /**
      * Elimina el elemento pasado por parametro del catalgo
      */
-    fun eliminarElemento(elemento: ElementoBiblioteca){
-        catalogo.eliminarElemento(elemento)
+    fun eliminarElemento(id: String){
+        catalogo.eliminarElementoPorId(id)
     }
 
     /**
